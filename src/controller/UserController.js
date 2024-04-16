@@ -1,3 +1,4 @@
+const Connection = require("mysql/lib/Connection");
 const knex = require("../database/connection");
 
 class UserController {
@@ -7,13 +8,27 @@ class UserController {
                 .select("")
                 .orderBy("name", "asc");
 
-            response.json({ error: false, data });
+            return response.json({ error: false, data });
         } catch (error) {
-            response.json({ error: false, data });
+            return response.json({ error: false, data });
         }
     }
 
-    static async create(request, response) { };
+    static async create(request, response) { 
+        try {
+            let { name } = request.body;
+
+            if(!name) {
+                return response.json({ error: true, msg: "Nome obrigatorio"});
+            }
+
+            await connection("user").insert({ name });
+
+            return response.json({ error: false, msg: "Usuario cadastrado com sucesso"});
+        } catch (error) {
+            return response.json({ error: false, msg: error});
+        }
+    };
 
     static async update(request, response) { };
 
