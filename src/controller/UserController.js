@@ -1,7 +1,11 @@
+const knex = require("../database/connection");
+
 class UserController {
     static async all(request, response) {
         try {
-            let data = [];
+            let data = await knex("user")
+                .select("")
+                .orderBy("name", "asc");
 
             response.json({ error: false, data });
         } catch (error) {

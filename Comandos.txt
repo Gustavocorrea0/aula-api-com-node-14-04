@@ -1,0 +1,10 @@
+npm install express
+npm install nodemon
+npm install mysql
+npm install knex
+
+Node Express: https://expressjs.com/pt-br/starter/hello-world.html
+
+Criar um banco de dados com o nome API;
+Criar uma tabela com o nome user;
+Atributos: `id`, `name`, `created_at`, `updated_at`
